@@ -72,11 +72,17 @@ npx create-next-app@latest
 
 - Tại sao chỉ có server component cần RSC Payload? ==> Giải quyết bài toán Navigation
 
-Cách navigation trong Next: dùng component Link (của Next)
-Khi user bấm vào component Link ==> Trình duyệt gọi api đặc biệt lên next server ==> lấy RSC Payload của trang mới ==> So sánh thực điểm khác nhau với RSC Payload của trang cũ ==> Dùng React DOM để cập nhập lại những phần thay đổi
+## Navigation 
+
+Cách navigation trong Next: 
+- dùng component Link (của Next)
+- Khi user bấm vào component Link ==> Trình duyệt gọi api đặc biệt lên next server ==> lấy RSC Payload của trang mới 
+==> !So sánh thực điểm khác nhau với RSC Payload của trang cũ 
+==> Dùng React DOM để cập nhập lại những phần thay đổi (xử lý ở trình duyệt)
 
 ## Routing
 
 - Tên trong folder trong app phải tên là page.jsx(tsx) giúp tự sinh ra route
 - Private route: _component (thêm _ trc tên để k tự sinh route)
 - Bỏ qua route: (home) -> hiểu là folder gốc
+- Khi muốn đổi tên route thì k đổi tên folder, k đặt tên folder = tiếng việt -> cấu hình require trong next config
