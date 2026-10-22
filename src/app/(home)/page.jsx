@@ -1,10 +1,16 @@
-import Counter from "../_components/Counter";
+import { redirect } from "next/navigation";
+import Button from "./Button";
+
+const isAuth = false;
 
 export default function HomePage() {
+    if (!isAuth) {
+        return redirect(`/products`);
+    }
     return (
         <div>
             <p>Home</p>
-            <Counter initValue={1} />
+            <Button />
         </div>
     );
 }
