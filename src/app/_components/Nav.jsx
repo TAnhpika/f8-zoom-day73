@@ -1,10 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Nav() {
     const [count, setCount] = useState(0);
+    const [value, setValue] = useState();
+
+    useEffect(() => {
+        localStorage.setItem("token", "123");
+        const value = Math.random();
+        const setRandom = () => {
+            setValue(value);
+        };
+        setRandom();
+    }, []);
 
     return (
         <header className="max-w-300 mx-auto py-3 flex justify-between items-center">
@@ -12,7 +22,7 @@ export default function Nav() {
                 className="text-3xl font-semibold"
                 onClick={() => setCount(count + 1)}
             >
-                Logo: {count}
+                Logo: {count} {value}
             </h1>
             <ul className="flex gap-3 items-center">
                 <li>

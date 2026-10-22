@@ -43,9 +43,12 @@ npx create-next-app@latest
 
 ## Client Component
 
+### Summary:
+
+- cách chuyển từ Server sang Client Component: "use client" ở đầu file
 - "Chỉ chuyển client khi nút đó gọi API"
 - Hydration: gắn js vào đúng component trong html thô
-- cách chuyển từ Server sang Client Component: "use client" ở đầu file
+- Cách hoạt động: Client prerender tạo khung html -> Tải JS -> Hydration gắn JS vào html -> Rerender
 
 - Mặc định page là Server Component r, page trong layout -> layout cx là server
 
@@ -72,13 +75,14 @@ npx create-next-app@latest
 
 - Tại sao chỉ có server component cần RSC Payload? ==> Giải quyết bài toán Navigation
 
-## Navigation 
+## Navigation
 
-Cách navigation trong Next: 
+Cách navigation trong Next:
+
 - dùng component Link (của Next)
-- Khi user bấm vào component Link ==> Trình duyệt gọi api đặc biệt lên next server ==> lấy RSC Payload của trang mới 
-==> !So sánh thực điểm khác nhau với RSC Payload của trang cũ 
-==> Dùng React DOM để cập nhập lại những phần thay đổi (xử lý ở trình duyệt)
+- Khi user bấm vào component Link ==> Trình duyệt gọi api đặc biệt lên next server ==> lấy RSC Payload của trang mới
+  ==> !So sánh thực điểm khác nhau với RSC Payload của trang cũ
+  ==> Dùng React DOM để cập nhập lại những phần thay đổi (xử lý ở trình duyệt)
 
 ## Routing
 
@@ -86,3 +90,14 @@ Cách navigation trong Next:
 - Private route: _component (thêm _ trc tên để k tự sinh route)
 - Bỏ qua route: (home) -> hiểu là folder gốc
 - Khi muốn đổi tên route thì k đổi tên folder, k đặt tên folder = tiếng việt -> cấu hình require trong next config
+
+## Common error
+
+- localStorage.setItem viết ở nav là ở Server component, mà server k có localStorage -> lỗi. => Dùng useEffect để hiện đợi component chuyển về client rồi mới chạy (k cho chạy ở Server)
+
+- Math.random() fail vì prerender và render làm tạo 2 giá trị khác -> dùng state & useEffect
+
+- Các dữ liệu dễ bị thay đổi giữa client và server: 
+    - múi giờ server # client
+    - random
+    - chuyển đổi tình trạng tiền tệ (US: 12,000; VN: 12.000). => khai báo chung number.toLocaleString("vi-VN")
