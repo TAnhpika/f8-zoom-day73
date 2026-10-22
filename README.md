@@ -41,6 +41,10 @@ npx create-next-app@latest
 
 -> Để tương tác: bắt event, dùng hook -> dùng client component
 
+### Nhược điểm của Next
+
+- update nhanh, thay đổi nhiều syntax, thư viện k update theo kịp
+
 ## Client Component
 
 ### Summary:
@@ -97,7 +101,7 @@ Cách navigation trong Next:
 
 - Math.random() fail vì prerender và render làm tạo 2 giá trị khác -> dùng state & useEffect
 
-- Các dữ liệu dễ bị thay đổi giữa client và server: 
+- Các dữ liệu dễ bị thay đổi giữa client và server:
     - múi giờ server # client
     - random
     - chuyển đổi tình trạng tiền tệ (US: 12,000; VN: 12.000). => khai báo chung number.toLocaleString("vi-VN")
@@ -105,8 +109,14 @@ Cách navigation trong Next:
 ## Dynamic route
 
 - TH1: đặt tên folder = [] (vd: [slug])
-- dùng prop params + async 
+- dùng prop params + async (ở hoạt động ở page dynamic)
 - lưu ý: async chỉ cho Server component, k dùng cho Client component
 
 - TH2: route lồng nhiều cấp dùng [...slug]
 - TH3: thêm (ít dùng): [[...slug]]: dùng khi k muốn tạo page.jsx ở posts mà chỉ xử lý trong [...slug]
+
+## Pagination
+
+- http://localhost:3000/posts?page=1
+- lấy prop searchParams
+- k dùng ở dynamic route
