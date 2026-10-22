@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const getProducts = async () => {
     const response = await fetch(`${process.env.SERVER_API}/products`);
@@ -24,7 +25,11 @@ export default async function ProductsPage() {
                             width={300}
                             height={300}
                         />
-                        <h2>{product.title}</h2>
+                        <h2>
+                            <Link href={`/products/${product.id}`}>
+                                {product.title}
+                            </Link>
+                        </h2>
                     </div>
                 ))}
             </div>
