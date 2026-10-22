@@ -101,3 +101,12 @@ Cách navigation trong Next:
     - múi giờ server # client
     - random
     - chuyển đổi tình trạng tiền tệ (US: 12,000; VN: 12.000). => khai báo chung number.toLocaleString("vi-VN")
+
+## Dynamic route
+
+- TH1: đặt tên folder = [] (vd: [slug])
+- dùng prop params + async 
+- lưu ý: async chỉ cho Server component, k dùng cho Client component
+
+- TH2: route lồng nhiều cấp dùng [...slug]
+- TH3: thêm (ít dùng): [[...slug]]: dùng khi k muốn tạo page.jsx ở posts mà chỉ xử lý trong [...slug]
