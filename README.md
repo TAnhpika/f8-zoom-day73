@@ -50,7 +50,7 @@ npx create-next-app@latest
 ### Summary:
 
 - cách chuyển từ Server sang Client Component: "use client" ở đầu file
-- "Chỉ chuyển client khi nút đó gọi API"
+- "Tách client khi nút đó xử lý sự kiện & gọi API"
 - Hydration: gắn js vào đúng component trong html thô
 - Cách hoạt động: Client prerender tạo khung html -> Tải JS -> Hydration gắn JS vào html -> Rerender
 

@@ -1,8 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import SearchInput from "./SearchInput";
 
-const getProducts = async () => {
-    const response = await fetch(`${process.env.SERVER_API}/products`);
+const getProducts = async (q = "") => {
+    const response = await fetch(
+        `${process.env.SERVER_API}/products/search?q=${q}`,
+    );
     if (!response.ok) {
         throw new Error("Fetching products error");
     }
@@ -10,12 +13,16 @@ const getProducts = async () => {
     return products;
 };
 
-export default async function ProductsPage() {
-    const products = await getProducts();
+export default async function ProductsPage({ searchParams }) {
+    const { q } = await searchParams;
+    const products = await getProducts(q);
 
     return (
         <div>
             <h1 className="text-3xl mb-3">Products</h1>
+            <SearchInput />
+            <p className="text-lg">Tìm kiếm: {q}</p>
+
             <div className="flex flex-wrap">
                 {products.map((product) => (
                     <div key={product.id} className="w-1/4">
