@@ -1,25 +1,25 @@
 "use client";
 
-import { useState } from "react";
-import { likeAction, loginAction } from "./action";
+import { useActionState, useEffect } from "react";
+import { loginAction } from "./action";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm2() {
-    const [message, setMessage] = useState("");
+    const [state, action, pending] = useActionState(loginAction, {
+        message: "",
+    });
+    // const router = useRouter();
+    // useEffect(() => {
+    //     if (state.success) {
+    //         router.push("/");
+    //     }
+    // }, [router, state]);
     return (
         <>
-            {message && <span>{message}</span>}
-            <button
-                className="px-3 py-1 border border-red-600"
-                onClick={likeAction}
-            >
-                Like
-            </button>
-            <form
-                action={async (formData) => {
-                    const response = await loginAction(formData);
-                    setMessage(response.message);
-                }}
-            >
+            {state.message && (
+                <span className="block mb-3">{state.message}</span>
+            )}
+            <form action={action}>
                 <div className="mb-3">
                     <label htmlFor="" className="block mb-1">
                         Email
@@ -41,7 +41,7 @@ export default function LoginForm2() {
                     />
                 </div>
                 <button className="px-3 py-2 bg-green-600 text-white">
-                    Submit
+                    {pending ? "Loading..." : "Login"}
                 </button>
             </form>
         </>
