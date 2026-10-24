@@ -14,6 +14,8 @@ export default function LoginForm2() {
     //         router.push("/");
     //     }
     // }, [router, state]);
+    console.log(state);
+
     return (
         <>
             {state.message && (
@@ -29,6 +31,11 @@ export default function LoginForm2() {
                         name="email"
                         className="px-3 py-1 border border-[#ddd] outline-0 w-1/2"
                     />
+                    {state?.error?.email && (
+                        <span className="text-red-600">
+                            {state?.error?.email}
+                        </span>
+                    )}
                 </div>
                 <div className="mb-3">
                     <label htmlFor="" className="block mb-1">
@@ -39,6 +46,11 @@ export default function LoginForm2() {
                         name="password"
                         className="px-3 py-1 border border-[#ddd] outline-0 w-1/2"
                     />
+                    {state?.error?.password && (
+                        <span className="text-red-600">
+                            {state?.error?.password}
+                        </span>
+                    )}
                 </div>
                 <button className="px-3 py-2 bg-green-600 text-white">
                     {pending ? "Loading..." : "Login"}
